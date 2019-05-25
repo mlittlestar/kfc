@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.app.kfc.mapper.Extend.ProductExtendMapper">
+    <select id="selectAll" resultMap="ProductExtendResultMap">
+        select * from kfc_product;
+  </select>
+
+    <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="ProductExtendResultMap">
+        select * from kfc_product where id=#{id}
+    </select>
+
+    <resultMap id="ProductExtendResultMap"
+               extends="com.briup.app.kfc.mapper.ProductMapper.BaseResultMap"
+               type="com.briup.app.kfc.bean.Extend.ProductExtend">
+        <association
+                property="category"
+                column="category_id"
+                select="com.briup.app.kfc.mapper.CategoryMapper.selectByPrimaryKey"></association>
+    </resultMap>
+</mapper>

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.app.kfc.mapper.Extend.OrderLineExtendMapper">
+    <select id="selectAll" resultMap="OrderLineExtendResultMap">
+        select * from kfc_order_line;
+  </select>
+
+    <resultMap id="OrderLineExtendResultMap"
+               extends="com.briup.app.kfc.mapper.OrderLineMapper.BaseResultMap"
+               type="com.briup.app.kfc.bean.Extend.OrderLineExtend">
+        <association
+                property="order"
+                column="order_id"
+                select="com.briup.app.kfc.mapper.OrderMapper.selectByPrimaryKey"></association>
+
+        <association
+                property="orderExtend"
+                column="order_id"
+                select="com.briup.app.kfc.mapper.Extend.OrderExtendMapper.selectByPrimaryKey"></association>
+
+        <association
+                property="product"
+                column="product_id"
+                select="com.briup.app.kfc.mapper.ProductMapper.selectByPrimaryKey"></association>
+
+        <association
+                property="productExtend"
+                column="product_id"
+                select="com.briup.app.kfc.mapper.Extend.ProductExtendMapper.selectByPrimaryKey"></association>
+    </resultMap>
+</mapper>

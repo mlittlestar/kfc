@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.briup.app.kfc.mapper.Extend.UserRoleExtendMapper">
+    <select id="selectAll" resultMap="UserRoleExtendResultMap">
+        select * from kfc_user_role;
+  </select>
+
+    <resultMap id="UserRoleExtendResultMap"
+               extends="com.briup.app.kfc.mapper.UserRoleMapper.BaseResultMap"
+               type="com.briup.app.kfc.bean.Extend.UserRoleExtend">
+        <association
+                property="user"
+                column="user_id"
+                select="com.briup.app.kfc.mapper.UserMapper.selectByPrimaryKey"></association>
+
+        <association
+                property="role"
+                column="role_id"
+                select="com.briup.app.kfc.mapper.RoleMapper.selectByPrimaryKey"></association>
+    </resultMap>
+</mapper>
